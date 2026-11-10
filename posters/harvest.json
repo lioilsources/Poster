@@ -1,0 +1,559 @@
+[
+ {
+  "slug": "poetrystream",
+  "name": "StreamPoetry",
+  "tagline": "Meditativní stream české poezie",
+  "shots": [
+   "shot1-Báseň.png",
+   "shot2-In-app.png",
+   "shot3-Kožní ambulance.png",
+   "shot4-Sbírky.png",
+   "shot5-Stream.png",
+   "shot6-Zoneta.png"
+  ],
+  "ios": "https://apps.apple.com/app/id6767237393",
+  "android": "https://play.google.com/store/apps/details?id=com.ab.PoetryStreamSC",
+  "page": "https://olin.now/poetrystream.html"
+ },
+ {
+  "slug": "swypekids",
+  "name": "SwypeKids",
+  "tagline": "Děti 5–9 let se učí číst přejížděním prstem po obrázcích",
+  "shots": [
+   "shot1-01-mapa.png",
+   "shot2-02-hra.png",
+   "shot3-03-doplnovacka.png",
+   "shot4-04-rymy.png",
+   "shot5-05-nalepka.png",
+   "shot6-06-zverinec.png",
+   "shot7-07-svet-zviratka.png",
+   "shot8-08-svet-oko.png",
+   "shot9-09-skladej-vetu.png",
+   "shot10-10-ma-knizka.png"
+  ],
+  "ios": "https://apps.apple.com/app/id6785485866",
+  "android": "https://play.google.com/store/apps/details?id=com.ab.SwypeKids",
+  "page": "https://olin.now/swypekids.html"
+ },
+ {
+  "slug": "lexify",
+  "name": "Lexify",
+  "tagline": "Obrázkové kartičky na slovíčka v 17 jazycích, funguje offline",
+  "shots": [
+   "shot1-akvarel_style.png",
+   "shot2-card.png",
+   "shot3-card_like.png",
+   "shot4-flags_card.png",
+   "shot5-flags_deck.png",
+   "shot6-home.png",
+   "shot7-shop.png",
+   "shot8-shop_languages.png"
+  ],
+  "ios": "https://apps.apple.com/app/id6784602743",
+  "android": "https://play.google.com/store/apps/details?id=com.ab.duolingoCards",
+  "page": "https://olin.now/lexify.html"
+ },
+ {
+  "slug": "mirrorbooth",
+  "name": "MirrorBooth",
+  "tagline": "Real-time symetrické zrcadlo obličeje ze selfie kamery",
+  "shots": [
+   "shot1-mb_1783922830175.png",
+   "shot2-mb_1784070856777.png",
+   "shot3-mb_1784071530980.png"
+  ],
+  "ios": "https://apps.apple.com/app/id6767824892?pt=128849798&ct=olinnow",
+  "android": "https://play.google.com/store/apps/details?id=com.ab.mirrorbooth&listing=olinnow",
+  "page": "https://olin.now/mirrorbooth.html"
+ },
+ {
+  "slug": "kirian",
+  "name": "Kirian",
+  "tagline": "Vertikální arkádová střílečka s roguelike smyčkou",
+  "shots": [
+   "shot1-kirian_achivements.png",
+   "shot2-kirian_comcenter.png",
+   "shot3-kirian_ikaruga.png",
+   "shot4-kirian_skin_selector.png"
+  ],
+  "ios": "https://apps.apple.com/app/id6774868017",
+  "android": "https://play.google.com/store/apps/details?id=com.ab.kiran",
+  "page": "https://olin.now/kirian.html"
+ },
+ {
+  "slug": "doodlebugs",
+  "name": "DoodlebugsRevival",
+  "tagline": "Arkádové souboje dvouplošníků pro partu v jedné místnosti — přes WiFi nebo na jednom počítači",
+  "shots": [],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/doodlebugs.html"
+ },
+ {
+  "slug": "kindlify",
+  "name": "Kindlify",
+  "tagline": "Nelineární čtečka starověkých textů — 92 děl, české souhrny a originál",
+  "shots": [
+   "shot1-kindlify_1_marek_original.png",
+   "shot2-kindlify_2_marek_verse.png",
+   "shot3-kindlify_3_ustava_filtr.png",
+   "shot4-kindlify_4_ustava_kapitola.png",
+   "shot5-kindlify_5_tao_te_ting.png",
+   "shot6-kindlify_6_aeneis.png"
+  ],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/kindlify.html"
+ },
+ {
+  "slug": "ol1nllm",
+  "name": "Ol1nLLM",
+  "tagline": "AI chat s rolemi, Knihovník a Právník, studio na obrázky, video, pohádky, hudbu a hlas",
+  "shots": [
+   "shot1-01-chat-role.png",
+   "shot2-02-chat-pravnik.png",
+   "shot3-03-chat-zdroje.png",
+   "shot4-04-chat-zdroj-detail.png",
+   "shot5-05-chat-leads.png",
+   "shot6-06-chat-smlouvy-otazky.png",
+   "shot7-07-chat-smlouvy-dokument.png",
+   "shot8-08-chat-historie.png",
+   "shot9-10-studio-kolo.png",
+   "shot10-11-studio-styl-vysledek.png"
+  ],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/ol1nllm.html"
+ },
+ {
+  "slug": "djfy",
+  "name": "DJfy",
+  "tagline": "DJ deck s chytrým playlistem a párty režimem, kde hudbu vybírají hosté z mobilu",
+  "shots": [
+   "shot1-01-playlist.png",
+   "shot2-02-deck.png",
+   "shot3-03-party.png",
+   "shot4-04-party-fronta.png",
+   "shot5-05-party-hoste.png",
+   "shot6-06-party-hledani.png",
+   "shot7-07-host-prihlaseni.png",
+   "shot8-08-host-fronta.png",
+   "shot9-09-host-hledani.png"
+  ],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/djfy.html"
+ },
+ {
+  "slug": "orbitrontactics",
+  "name": "Archion",
+  "tagline": "Strategická šachová varianta, kde braní rozhoduje souboj lodí v aréně",
+  "shots": [],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/orbitrontactics.html"
+ },
+ {
+  "slug": "mangaprompts",
+  "name": "TsumikiMangaBot",
+  "tagline": "Telegram bot na mangu z bloků, restyle fotky, nový účes a animaci fotky",
+  "shots": [],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/mangaprompts.html"
+ },
+ {
+  "slug": "doggiowars",
+  "name": "DoggioWars",
+  "tagline": "Voxel dogfight na vzdušných ostrovech (samostatná hra pro Luanti)",
+  "shots": [],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/doggiowars.html"
+ },
+ {
+  "slug": "ugcfactory",
+  "name": "UGC Factory",
+  "tagline": "Továrna na Roblox doplňky — z promptu do 3D modelu bez ruční modelace",
+  "shots": [
+   "shot1-triage-mobil.png"
+  ],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/ugcfactory.html"
+ },
+ {
+  "slug": "puff",
+  "name": "Puff",
+  "tagline": "Neonová fyzikální hra — podrž, táhni, pusť",
+  "shots": [
+   "shot1-puff_1_blast.png",
+   "shot2-puff_2_implosion.png",
+   "shot3-puff_3_plasma.png",
+   "shot4-puff_4_menu.png",
+   "shot5-puff_5_water.png",
+   "shot6-puff_6_air.png"
+  ],
+  "ios": "https://apps.apple.com/app/id6808586613",
+  "android": "https://play.google.com/store/apps/details?id=com.ol1n.puff",
+  "page": "https://olin.now/puff.html"
+ },
+ {
+  "slug": "storyteller",
+  "name": "Pohádkomat",
+  "tagline": "Pohádka na dobrou noc, kterou vyprávíš ty — 2 795 pohádek z 98 zemí, appka jen napovídá",
+  "shots": [
+   "shot1-01-globus.png",
+   "shot2-02-globus-cesko.png",
+   "shot3-03-obsazeni.png",
+   "shot4-04-ukol.png",
+   "shot5-05-osnova.png",
+   "shot6-06-sufler.png",
+   "shot7-07-sufler-zvuky.png"
+  ],
+  "ios": "https://apps.apple.com/app/id6816062136",
+  "android": "https://play.google.com/store/apps/details?id=com.ol1n.storyteller",
+  "page": "https://olin.now/storyteller.html"
+ },
+ {
+  "slug": "beenhere",
+  "name": "Been Here",
+  "tagline": "Fotky z místa, kde právě stojíš",
+  "shots": [
+   "shot1-01-uvod.png",
+   "shot2-02-tady.png",
+   "shot3-03-mista.png",
+   "shot4-04-nastaveni.png"
+  ],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/beenhere.html"
+ },
+ {
+  "slug": "kittens",
+  "name": "Kittens",
+  "tagline": "Rychlá karetní hra s koťaty a bombou",
+  "shots": [],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/kittens.html"
+ },
+ {
+  "slug": "mutants",
+  "name": "Mutants",
+  "tagline": "Kooperativní karetní hra pro děti — poskládej mutanta",
+  "shots": [],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/mutants.html"
+ },
+ {
+  "slug": "memeshorts",
+  "name": "MemeShorts",
+  "tagline": "Z meme šablon vertikální shorty s vlastními postavami",
+  "shots": [],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/memeshorts.html"
+ },
+ {
+  "slug": "immunorun",
+  "name": "ImmunoRun",
+  "tagline": "Roguelite, ve kterém hraješ za imunitní systém",
+  "shots": [
+   "shot1-lexikon-01-kapitoly.png",
+   "shot2-lexikon-02-horecka.png",
+   "shot3-lexikon-03-schema.png",
+   "shot4-lexikon-04-doopravdy.png",
+   "shot5-lexikon-05-fagocytoza.png",
+   "shot6-lexikon-06-opsonizace.png",
+   "shot7-lexikon-07-ockovani.png",
+   "shot8-lexikon-08-kviz.png"
+  ],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/immunorun.html"
+ },
+ {
+  "slug": "handwrittenstickers",
+  "name": "HandWrittenStickers",
+  "tagline": "Nálepky z vlastního rukopisu",
+  "shots": [
+   "shot1-stickers_1_bublinky.png",
+   "shot2-stickers_2_rukopis.png",
+   "shot3-stickers_3_kaligrafie.png",
+   "shot4-stickers_4_emoji.png",
+   "shot5-stickers_5_styl.png"
+  ],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/handwrittenstickers.html"
+ },
+ {
+  "slug": "elftonplayer",
+  "name": "Elfton Player",
+  "tagline": "Bit-perfect přehrávač pro USB DAC — soubor, RAM, ASIO a nic mezi tím",
+  "shots": [],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/elftonplayer.html"
+ },
+ {
+  "slug": "hajanek",
+  "name": "Hajánek",
+  "tagline": "Usínací pohádky pro děti — klidný hlas, šum moře a ukolébavka, bez reklam a bez účtu",
+  "shots": [
+   "shot1-01-domu.png",
+   "shot2-02-pohadka.png",
+   "shot3-03-prehravac.png",
+   "shot4-04-jukebox.png",
+   "shot5-05-jukebox-zvuky.png",
+   "shot6-06-hlas.png",
+   "shot7-07-nahravani.png",
+   "shot8-08-nastaveni.png"
+  ],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/hajanek.html"
+ },
+ {
+  "slug": "terrareality",
+  "name": "TerraReality",
+  "tagline": "Pronájem bytu od hledání na mapě po zaplacený nájem — pro majitele, nájemníky i provozovatele",
+  "shots": [
+   "shot1-01-hledani-chatem.png",
+   "shot2-02-detail-inzeratu.png",
+   "shot3-03-zpravy.png",
+   "shot4-04-platba-qr.png",
+   "shot5-05-nahlaseni-inzeratu.png"
+  ],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/terrareality.html"
+ },
+ {
+  "slug": "predavka",
+  "name": "Předávka",
+  "tagline": "Klidná kuchyně ve špičce — kuchaři slyší objednávky, obsluha vidí, za kolik minut co ponese",
+  "shots": [
+   "shot1-01-plac-nestihame.png",
+   "shot2-02-plac-malo.png",
+   "shot3-03-objednavka.png",
+   "shot4-04-predavka.png",
+   "shot5-05-kuchyn-gril.png"
+  ],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/predavka.html"
+ },
+ {
+  "slug": "webtoon",
+  "name": "Toonfork",
+  "tagline": "Komiksy na výšku i bez internetu — příběhy zdarma, gamebooky, kde volíš ty, a panely, které ožívají",
+  "shots": [
+   "shot1-01-svety.png",
+   "shot2-02-svet.png",
+   "shot3-03-za-koho-hrat.png",
+   "shot4-04-ctecka.png",
+   "shot5-05-bubliny.png",
+   "shot6-06-volby.png",
+   "shot7-07-cena.png",
+   "shot8-08-dalsi-dil.png",
+   "shot9-09-historie-dilu.png",
+   "shot10-10-moderace.png"
+  ],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/webtoon.html"
+ },
+ {
+  "slug": "chess4princesses",
+  "name": "Šachové království",
+  "tagline": "Šachy pro pětileté — pohádkové lekce, hlas, který všechno přečte, a bitvy víl s čarodějkami",
+  "shots": [
+   "shot1-01-mapa.png",
+   "shot2-02-ostrov.png",
+   "shot3-03-pribeh.png",
+   "shot4-04-tahy.png",
+   "shot5-05-bitva.png",
+   "shot6-06-bitva-zasah.png",
+   "shot7-07-hotovo.png",
+   "shot8-08-konik.png",
+   "shot9-09-sach.png",
+   "shot10-10-pescova-valka.png"
+  ],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/chess4princesses.html"
+ },
+ {
+  "slug": "rattleramp",
+  "name": "RattleRamp",
+  "tagline": "U-rampa na tablet v baru U Chřestýše — triky se kreslí prstem do mřížky 3×3, rozhoduje pustit ve správnou chvíli",
+  "shots": [],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/rattleramp.html"
+ },
+ {
+  "slug": "fotballsimulator",
+  "name": "Fotball Simulator",
+  "tagline": "Volej jedním tahem prstu — kde nárt potká míč, s jakou falší a v kterou milisekundu",
+  "shots": [
+   "shot1-01-nadhoz.png",
+   "shot2-02-swipe.png",
+   "shot3-03-kontakt.png",
+   "shot4-04-let.png",
+   "shot5-05-gol.png",
+   "shot6-06-false-tah.png",
+   "shot7-07-false-let.png"
+  ],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/fotballsimulator.html"
+ },
+ {
+  "slug": "behanek",
+  "name": "Běhánek",
+  "tagline": "Běžecká appka, která ti do sluchátek řekne, jak jsi na tom proti své formě. Bez účtu a bez reklam",
+  "shots": [
+   "shot1-01-historie.png",
+   "shot2-02-start.png",
+   "shot3-03-duch.png",
+   "shot4-04-beh.png",
+   "shot5-05-beh-mapa.png",
+   "shot6-06-detail.png",
+   "shot7-07-detail-splity.png",
+   "shot8-08-nastaveni.png"
+  ],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/behanek.html"
+ },
+ {
+  "slug": "kaceny",
+  "name": "Kačeny",
+  "tagline": "90 vteřin, 8 nábojů a hodně kačen. Arkádová střílečka na výšku se stovkou skinů",
+  "shots": [
+   "shot1-01-menu.png",
+   "shot2-02-skiny.png",
+   "shot3-03-classic.png",
+   "shot4-04-cyberpunk.png",
+   "shot5-05-kawaii.png",
+   "shot6-06-christmas.png",
+   "shot7-07-popart.png",
+   "shot8-08-sumie.png"
+  ],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/kaceny.html"
+ },
+ {
+  "slug": "tlumocnik",
+  "name": "Tlumočník",
+  "tagline": "Telefon na stole mezi dvěma lidmi — každý mluví svým jazykem a appka to druhému nahlas přeloží",
+  "shots": [
+   "shot1-01-rozhovor.png",
+   "shot2-02-start.png",
+   "shot3-03-jazyky.png",
+   "shot4-04-to-jsem-ja.png",
+   "shot5-05-zaznam.png",
+   "shot6-06-hlas.png"
+  ],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/tlumocnik.html"
+ },
+ {
+  "slug": "papanek",
+  "name": "Papánek",
+  "tagline": "Kuchařka pro začátečníky — řekne ti, co uvaříš z toho, co máš doma",
+  "shots": [
+   "shot1-01_co_uvarim.png",
+   "shot2-02_recept.png",
+   "shot3-03_recept_suroviny.png",
+   "shot4-04_vareni.png",
+   "shot5-05_spiz.png",
+   "shot6-06_naseptavac.png"
+  ],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/papanek.html"
+ },
+ {
+  "slug": "restyler",
+  "name": "Restyler",
+  "tagline": "Selfie, nové vousy, brýle nebo účes a pak celá fotobuňka tebe v různých stylech",
+  "shots": [
+   "shot1-01-vlasy.png",
+   "shot2-02-vousy.png",
+   "shot3-03-bryle.png",
+   "shot4-04-vlasy-muzi.png",
+   "shot5-05-styly.png"
+  ],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/restyler.html"
+ },
+ {
+  "slug": "automatka",
+  "name": "Automatka",
+  "tagline": "Dítě na kroužku zmáčkne „Jsem tu“ a rodič to ví. Bez sledování polohy",
+  "shots": [
+   "shot1-01-rodic-dnes.png",
+   "shot2-02-dite-jsem-tu.png",
+   "shot3-03-dite-na-miste.png",
+   "shot4-04-parovaci-kod.png",
+   "shot5-05-deti.png",
+   "shot6-06-start.png"
+  ],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/automatka.html"
+ },
+ {
+  "slug": "partycockpit",
+  "name": "PartyCockpit",
+  "tagline": "Party show na velké plátno — hosté posílají z telefonu fotky, vzkazy a tance, ty řídíš, co se ukáže",
+  "shots": [
+   "shot1-01-vzkaz.png",
+   "shot2-02-ovladac-hry.png"
+  ],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/partycockpit.html"
+ },
+ {
+  "slug": "thepill",
+  "name": "The Pill",
+  "tagline": "Pilulka na klid v rodině — ukáže ti, jak to říct jinak, než zprávu odešleš",
+  "shots": [],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/thepill.html"
+ },
+ {
+  "slug": "bestbet",
+  "name": "BestBet",
+  "tagline": "Hokejový model, který ukáže férovou pravděpodobnost zápasu vedle kurzu",
+  "shots": [],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/bestbet.html"
+ },
+ {
+  "slug": "alienmatch",
+  "name": "AlienMatch",
+  "tagline": "Seznamka beze slov, kde jsi mimozemšťan a páruješ se podle nálady",
+  "shots": [
+   "shot1-01-radar.png",
+   "shot2-02-zed.png",
+   "shot3-03-zdi.png",
+   "shot4-04-signal.png",
+   "shot5-05-soukromi.png"
+  ],
+  "ios": null,
+  "android": null,
+  "page": "https://olin.now/alienmatch.html"
+ }
+]

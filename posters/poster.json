@@ -1,0 +1,20 @@
+{
+ "_help": "Uprav a spusť:  .venv/bin/python build.py   (výstup: out/<name>/_all.pdf). Téma: tropical | neon | pastel | paper",
+ "theme": "tropical",
+ "place": "cafe",
+ "per_page": 4,
+ "shot_index": 0,
+ "shots": {"lexify":"shot6-home.png"},
+ "sheets": [
+  {"id":"cover","kind":"cover","title":"První český AI slop","sub":"Ananas&Bananas · 40+ aplikací","text":"Dělá je jeden člověk v Praze. Všechny bez reklam a bez sledování. Naskenuj a vyber si."},
+  {"id":"obchody","kind":"apps","cat":"default","per_page":6,"title":"Teď v obchodech","sub":"Nainstaluj hned — App Store i Google Play","slugs":["swypekids","lexify","mirrorbooth","kirian","puff","storyteller"]},
+  {"id":"deti","kind":"apps","cat":"deti","title":"Pro děti a rodiče","sub":"Učení, pohádky a hry bez reklam","slugs":["swypekids","lexify","chess4princesses","hajanek","storyteller","mutants","automatka","papanek"]},
+  {"id":"hry","kind":"apps","cat":"hry","title":"Hry","sub":"Arkády, strategie a párty","slugs":["kirian","puff","kaceny","kittens","immunorun","doodlebugs","doggiowars","rattleramp","fotballsimulator","orbitrontactics"]},
+  {"id":"ai","kind":"apps","cat":"ai","title":"Kreativita & AI","sub":"Tvoř, přetvářej, vyprávěj","slugs":["ol1nllm","mirrorbooth","restyler","handwrittenstickers","mangaprompts","memeshorts","webtoon","ugcfactory","poetrystream","kindlify"]},
+  {"id":"hudba","kind":"apps","cat":"hudba","title":"Hudba & párty","sub":"Pusť to nahlas","slugs":["djfy","partycockpit","elftonplayer"]},
+  {"id":"pomocnici","kind":"apps","cat":"pomocnici","title":"Každodenní pomocníci","sub":"Maličkosti, které ulehčí den","slugs":["tlumocnik","behanek","beenhere","thepill","bestbet","alienmatch"]},
+  {"id":"firmy","kind":"apps","cat":"firmy","title":"Pro firmy","sub":"Nástroje pro práci","slugs":["terrareality","predavka"]},
+  {"id":"free","kind":"free","title":"Všechno zdarma","sub":"Žádná reklama, žádný prodej dat","text":"Každá appka je zdarma v plné základní verzi. Placené jsou jen balíčky navíc (skiny, jazyky, hlasy). Nikdy reklama, nikdy prodej dat."}
+ ],
+ "build": ["cover","obchody","free"]
+}

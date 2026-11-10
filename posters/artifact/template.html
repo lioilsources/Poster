@@ -1,0 +1,429 @@
+<title>Plakátovna Ananas&Bananas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap">
+<style>
+/* Layout: dvousloupcová dílna — vlevo editor (listy, obsah, vzhled), vpravo živý náhled A4 a export. */
+:root{--bg:#F6F3EC;--panel:#FFFFFF;--fg:#1B2733;--muted:#5E6B78;--line:#DDD8CA;--accent:#E8890C;--accent-fg:#1B1200;--field:#FBFAF6;--ok:#0E7C66;--danger:#B3261E;--stage:#E7E2D4;
+ --display:"Space Grotesk","Helvetica Neue",Arial,sans-serif;--text:Inter,"Helvetica Neue",Arial,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13181E;--panel:#1B222A;--fg:#EDEAE2;--muted:#9AA6B2;--line:#2E3843;--accent:#F5A23A;--accent-fg:#1B1200;--field:#141A20;--ok:#4CC9AE;--danger:#FF8A80;--stage:#0E1318;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#13181E;--panel:#1B222A;--fg:#EDEAE2;--muted:#9AA6B2;--line:#2E3843;--accent:#F5A23A;--accent-fg:#1B1200;--field:#141A20;--ok:#4CC9AE;--danger:#FF8A80;--stage:#0E1318;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--text);font-size:14px;line-height:1.45;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));padding-block:16px}
+h1,h2,h3{font-family:var(--display);margin:0}
+.top{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;margin-bottom:16px}
+.top h1{font-size:22px}
+.top p{margin:2px 0 0;color:var(--muted)}
+.app{display:grid;grid-template-columns:minmax(300px,420px) minmax(0,1fr);gap:20px;align-items:start}
+@media(max-width:860px){.app{grid-template-columns:minmax(0,1fr)}.stagecol{order:-1}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.col{display:flex;flex-direction:column;gap:14px;min-width:0}
+.panel h2{font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted);font-weight:500;min-width:0}
+input[type=text],input[type=url],select,textarea{font:inherit;color:var(--fg);background:var(--field);border:1px solid var(--line);border-radius:6px;padding:7px 9px;width:100%;min-width:0}
+textarea{resize:vertical;min-height:70px}
+input[type=color]{width:100%;height:34px;padding:2px;border:1px solid var(--line);border-radius:6px;background:var(--field)}
+.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1 1 120px}
+.chk{flex-direction:row;align-items:center;gap:8px;color:var(--fg);font-size:13px}
+.chk input{width:auto}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--field);color:var(--fg);border-radius:6px;padding:6px 10px}
+button:hover{border-color:var(--accent)}
+button.pri{background:var(--accent);color:var(--accent-fg);border-color:var(--accent);font-weight:600}
+button.sm{padding:3px 7px;font-size:12px}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+button:disabled{opacity:.5;cursor:default}
+.pages{display:flex;flex-direction:column;gap:6px}
+.pg{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:6px;padding:5px 6px;background:var(--field)}
+.pg.on{border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
+.pg .t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;font-weight:500}
+.pg .k{font-size:11px;color:var(--muted)}
+.apps{display:flex;flex-direction:column;gap:6px}
+.ap{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:4px 8px;align-items:center;border:1px solid var(--line);border-radius:6px;padding:6px;background:var(--field)}
+.ap img{width:28px;height:28px;border-radius:7px;display:block}
+.ap .n{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ap .sel{grid-column:2/4;display:flex;gap:6px}
+.ap select{padding:3px 6px;font-size:12px}
+.strip{grid-column:1/4;display:flex;gap:6px;overflow-x:auto;padding:2px 2px 6px}
+.strip button{flex:none;padding:0;border:2px solid var(--line);border-radius:6px;overflow:hidden;background:var(--field);line-height:0;position:relative}
+.strip button img{width:46px;height:100px;object-fit:cover;display:block;border-radius:0}
+.strip button.on{border-color:var(--accent)}
+.strip button.none{width:46px;height:100px;font-size:11px;line-height:1.2;color:var(--muted);padding:4px}
+.strip button b{position:absolute;left:2px;bottom:2px;background:rgba(0,0,0,.65);color:#fff;font:600 10px/1 var(--text);padding:2px 4px;border-radius:3px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px}
+.stagecol{display:flex;flex-direction:column;gap:12px;min-width:0;position:sticky;top:8px}
+@media(max-width:860px){.stagecol{position:static}}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.bar .sp{flex:1}
+.stage{background:var(--stage);border:1px solid var(--line);border-radius:10px;padding:14px;overflow:hidden;display:flex;justify-content:center}
+.fit{position:relative;flex:none}
+.fit .poster{position:absolute;left:0;top:0;transform-origin:0 0;box-shadow:0 6px 30px rgba(0,0,0,.25)}
+.msg{font-size:13px;color:var(--muted)}.msg b{color:var(--fg)}
+.ok{color:var(--ok)}.err{color:var(--danger)}
+.hint{font-size:12px;color:var(--muted);margin:0}
+
+/* --- plakát (A4, jednotky v mm, barvy z proměnných nastavených JS) --- */
+.poster{width:210mm;height:297mm;padding:10mm;display:flex;flex-direction:column;overflow:hidden;background:var(--pbg);color:var(--pink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;line-height:1.2;text-align:left}
+.poster *{box-sizing:border-box;margin:0;padding:0}
+.p-head{height:28mm;flex:none;display:flex;align-items:center;gap:6mm;border-bottom:1.4mm solid var(--pcol)}
+.p-head img{height:20mm;width:auto;border-radius:3mm;display:block}
+.p-head .tt{flex:1;min-width:0}
+.p-head h1{font-size:26pt;line-height:1.05;font-weight:800;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;color:var(--pink)}
+.p-head .sb{font-size:11pt;color:var(--pmuted);margin-top:1mm}
+.p-soc{display:flex;gap:3mm;flex:none}
+.p-soc div{text-align:center;font-size:6.5pt;font-weight:700;color:var(--pink);line-height:1.1}
+.p-soc img{display:block;width:19mm;height:19mm;background:#fff;margin-bottom:.8mm}
+.p-head .tag{width:14mm;height:14mm;border-radius:3mm;background:var(--pcol);flex:none}
+.p-main{flex:1;min-height:0;padding:6mm 0;display:flex;flex-direction:column}
+.p-grid{display:grid;gap:5mm;flex:1;min-height:0}
+.p-card{background:var(--pcard);border:.4mm solid var(--pline);border-radius:var(--prad);padding:3.5mm;display:flex;gap:3.5mm;overflow:hidden;min-height:0}
+.p-phone{flex:none;border:1mm solid var(--pink);border-radius:4.5mm;overflow:hidden;background:#dde;display:flex;align-items:center;justify-content:center}
+.p-phone img{width:100%;height:100%;display:block}
+.p-phone .soon{font-size:9pt;font-weight:800;color:#445;text-align:center;padding:2mm}
+.p-info{display:flex;flex-direction:column;gap:1.5mm;min-width:0;flex:1}
+.p-ic{display:flex;align-items:center;gap:2.5mm}
+.p-ic img{border-radius:22%;flex:none;display:block}
+.p-ic h2{font-weight:800;line-height:1.1;color:var(--pink)}
+.p-info .d{color:var(--pmuted);line-height:1.3;overflow:hidden}
+.p-qrs{margin-top:auto;display:flex;gap:2mm;align-items:flex-end;flex-wrap:wrap}
+.p-q{text-align:center;font-size:7pt;font-weight:700;color:var(--pink)}
+.p-q img{display:block;background:#fff}
+.p-foot{height:40mm;flex:none;border-top:.4mm solid var(--pline);padding-top:4mm;display:flex;align-items:center;gap:6mm}
+.p-foot .tx{flex:1;min-width:0}
+.p-foot strong{font-size:15pt;display:block;margin-bottom:1.5mm;font-weight:800}
+.p-foot p{font-size:9.5pt;line-height:1.35;color:var(--pmuted)}
+.p-foot .u{font-size:12pt;font-weight:800;margin-top:2mm}
+.p-foot .fq{text-align:center;font-size:8pt;color:var(--pmuted)}
+.p-foot .fq img{display:block;width:32mm;height:32mm;background:#fff}
+.p-wall{display:grid;grid-template-columns:repeat(8,20mm);gap:3mm;justify-content:center}
+.p-wall img{width:20mm;height:20mm;border-radius:22%;display:block}
+</style>
+
+<div class="top">
+  <div><h1>Plakátovna Ananas&amp;Bananas</h1><p>Poskládej si list A4, uprav texty a QR a stáhni barevné PDF k zalaminování.</p></div>
+  <div class="bar">
+    <label style="flex-direction:row;align-items:center;gap:8px">Předvolba
+      <select id="preset" style="width:auto"><option value="">— vyber —</option><option value="minimal">Minimal (3 listy)</option><option value="kategorie">Kategorie (8 listů)</option><option value="kompletni">Kompletní</option></select></label>
+  </div>
+</div>
+
+<div class="app">
+  <div class="col" id="editor"></div>
+  <div class="stagecol">
+    <div class="bar" id="nav"></div>
+    <div class="stage" id="stage"><div class="fit" id="fit"><div class="poster" id="poster"></div></div></div>
+    <div class="panel" id="export"></div>
+  </div>
+</div>
+<div id="offscreen" style="position:fixed;left:-10000px;top:0;pointer-events:none"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+const D = __DATA__;
+const APPS = Object.fromEntries(D.apps.map(a => [a.slug, a]));
+const CAT_COL = {deti:"#FF6B6B",hry:"#7B2CBF",ai:"#00A896",hudba:"#F72585",pomocnici:"#3A86FF",firmy:"#495867"};
+const THEMES = {
+  tropical:{name:"Tropical Tech",bg:"#FFFBF0",ink:"#12263A",muted:"#4A5D70",accent:"#FF9F1C",card:"#FFFFFF",line:"#E6DFC8",rad:"4mm"},
+  neon:{name:"Neon Arcade",bg:"#0E0B1F",ink:"#F4F1FF",muted:"#B7B0D9",accent:"#00F5D4",card:"#1A1535",line:"#3B3270",rad:"2mm"},
+  pastel:{name:"Pastel Kids",bg:"#FFF4F8",ink:"#3A2A4A",muted:"#6B5A7B",accent:"#FF8FB1",card:"#FFFFFF",line:"#F3D3E0",rad:"7mm"},
+  paper:{name:"Papír & tisk",bg:"#FFFFFF",ink:"#111111",muted:"#444444",accent:"#111111",card:"#FFFFFF",line:"#999999",rad:"1mm"}
+};
+const KEY = "ab-plakatovna-v1";
+const DEF_TT = "https://www.tiktok.com/@lioilsocial", DEF_YT = "https://www.youtube.com/@Ol%C3%ADVo%C5%99echovsk%C3%BD";
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const uid = () => Math.random().toString(36).slice(2, 8);
+const ap = (slug, extra) => Object.assign({slug, shot:0, qr:"auto"}, extra);
+const STORE = D.store;                         // appky s přímými odkazy do obou obchodů
+const COVER = {id:uid(),kind:"cover",title:"První český AI slop",sub:"Ananas&Bananas · appky zdarma",text:"Dělá je jeden člověk v Praze. Všechny bez reklam a bez sledování. Naskenuj a vyber si.",claim:"39 aplikací pro děti, hráče, tvůrce i firmy.",scanLabel:"Naskenuj",scanUrl:"olin.now",wall:true,color:""};
+const FREE = {id:uid(),kind:"text",title:"Všechno zdarma",sub:"Žádná reklama, žádný prodej dat",text:"Každá appka je zdarma v plné základní verzi.\n\nPlacené jsou jen balíčky navíc (skiny, jazyky, hlasy).\n\nNikdy reklama, nikdy prodej dat.",color:""};
+function storePage(){return {id:uid(),kind:"apps",title:"Teď v obchodech",sub:"Nainstaluj hned — App Store i Google Play",color:"",layout:6,apps:["swypekids","lexify","mirrorbooth","kirian","puff","storyteller"].filter(s=>APPS[s]).map(s=>ap(s))}}
+function catPage(c){return {id:uid(),kind:"apps",title:D.cats[c],sub:"Naskenuj a vyzkoušej",color:CAT_COL[c]||"",layout:4,apps:D.apps.filter(a=>a.cat===c).map(a=>ap(a.slug))}}
+function preset(n){
+  const base=[{...COVER,id:uid()},storePage()];
+  let pages=[...base];
+  if(n==="kategorie"||n==="kompletni") for(const c of Object.keys(D.cats)) if(c!=="firmy"||n==="kompletni") pages.push(catPage(c));
+  pages.push({...FREE,id:uid()});
+  return {theme:"tropical",accent:"",place:"cafe",logo:true,
+    footTitle:"Zdarma. Bez reklam. Bez sledování.",
+    footText:"Appky dělá jeden člověk v Praze s pomocí AI. Platíš jen za rozšíření, které chceš — a vždy víš dopředu za co.",
+    footUrl:"olin.now",footQr:true,footQrUrl:"",pages};
+}
+let S, cur = 0;
+try{ S = JSON.parse(localStorage.getItem(KEY)||"null"); }catch(e){ S = null; }
+if(!S || !Array.isArray(S.pages)) S = preset("minimal");
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+
+/* ---------- pomocné ---------- */
+const theme = () => { const t = THEMES[S.theme] || THEMES.tropical; return S.accent ? {...t, accent:S.accent} : t; };
+const LAYOUT = {2:{c:1,r:2},4:{c:2,r:2},6:{c:2,r:3}};
+function webUrl(path){ const u = "https://olin.now/" + (path||""); return u + (u.includes("?")?"&":"?") + "src=" + encodeURIComponent(S.place||"cafe"); }
+function playUrl(u){ return u + (u.includes("?")?"&":"?") + "referrer=" + encodeURIComponent("utm_source="+(S.place||"cafe")+"&utm_medium=poster"); }
+const qrCache = new Map();
+function qrUri(text){
+  if(qrCache.has(text)) return qrCache.get(text);
+  const q = qrcode(0,"H"); q.addData(text); q.make();
+  const u = q.createDataURL(8,32); qrCache.set(text,u); return u;
+}
+function appQrs(item){
+  const a = APPS[item.slug]; if(!a || item.qr==="none") return [];
+  if(item.qr==="auto" && a.ios && a.android) return [{u:qrUri(a.ios),l:"App Store"},{u:qrUri(playUrl(a.android)),l:"Google Play"}];
+  return [{u:qrUri(webUrl(a.slug+".html")),l:"olin.now"}];
+}
+function expand(){
+  const out = [];
+  S.pages.forEach((p,i) => {
+    if(p.kind==="apps"){
+      const cap = LAYOUT[p.layout||4].c * LAYOUT[p.layout||4].r;
+      const n = Math.max(1, Math.ceil(p.apps.length/cap));
+      for(let k=0;k<n;k++) out.push({src:i,part:k,parts:n,page:p,items:p.apps.slice(k*cap,(k+1)*cap)});
+    } else out.push({src:i,part:0,parts:1,page:p,items:[]});
+  });
+  return out;
+}
+
+/* ---------- plakát ---------- */
+function posterHTML(ex, preview){
+  const T = theme(), p = ex.page;
+  const col = p.color || T.accent;
+  const style = `--pbg:${T.bg};--pink:${T.ink};--pmuted:${T.muted};--pcard:${T.card};--pline:${T.line};--prad:${T.rad};--pcol:${col}`;
+  const title = p.title + (ex.parts>1 ? ` (${ex.part+1}/${ex.parts})` : "");
+  const tagMode = p.tag || (p.color ? "square" : "none");
+  const firstIcon = ex.items[0] && APPS[ex.items[0].slug] && APPS[ex.items[0].slug].icon;
+  const tagHTML = tagMode==="square" ? `<div class="tag"></div>` : (tagMode==="icon" && firstIcon) ? `<img src="${firstIcon}" style="height:16mm;width:16mm;border-radius:22%;flex:none">` : "";
+  const socOn = p.soc==="off" ? false : p.soc==="on" ? true : S.soc!==false;
+  const okUrl = u => u && /^https?:\/\//.test(u);
+  const socHTML = socOn ? `<div class="p-soc">${[[S.tiktok ?? DEF_TT,"TikTok"],[S.youtube ?? DEF_YT,"YouTube Shorts"]].map(([u,l])=>
+    okUrl(u) ? `<div><img src="${qrUri(u)}">${l}</div>` :
+    preview ? `<div><div style="width:19mm;height:19mm;border:.5mm dashed ${T.muted};margin-bottom:.8mm;display:flex;align-items:center;justify-content:center;font-size:6pt;color:${T.muted};padding:1mm">vyplň odkaz (jen náhled)</div>${l}</div>` : "").join("")}</div>` : "";
+  const head = `<div class="p-head">${S.logo?`<img src="${D.logo}">`:""}<div class="tt"><h1>${esc(title)}</h1><div class="sb">${esc(p.sub)}</div></div>${socHTML}${tagHTML}</div>`;
+  let main = "";
+  if(p.kind==="apps"){
+    const L = p.layout||4, {c,r} = LAYOUT[L];
+    const cardH = (197-(r-1)*5)/r, phH = cardH-7, phW = phH*9/19.5;
+    const d = L===2 ? {ic:14,h2:24,tx:12.5,qr:30,lines:6} : L===4 ? {ic:11,h2:17,tx:10.5,qr:19,lines:4} : {ic:9,h2:14.5,tx:9.5,qr:22,lines:3};
+    const cards = ex.items.map(it => {
+      const a = APPS[it.slug]; if(!a) return "";
+      const shot = it.shot>=0 ? a.shots[Math.min(it.shot,a.shots.length-1)] : null;
+      const ph = shot ? `<img src="${shot}">` : `<div class="soon">${esc(it.name||a.name)}<br>Brzy</div>`;
+      const qrs = appQrs(it).map(q=>`<div class="p-q"><img src="${q.u}" style="width:${d.qr}mm;height:${d.qr}mm">${q.l}</div>`).join("");
+      const lh = d.tx*1.3*0.3528;
+      return `<div class="p-card"><div class="p-phone" style="width:${phW.toFixed(2)}mm;height:${phH.toFixed(2)}mm">${ph}</div>
+        <div class="p-info"><div class="p-ic">${a.icon?`<img src="${a.icon}" style="width:${d.ic}mm;height:${d.ic}mm">`:""}<h2 style="font-size:${d.h2}pt">${esc(it.name||a.name)}</h2></div>
+        <div class="d" style="font-size:${d.tx}pt;max-height:${(lh*d.lines).toFixed(1)}mm">${esc(it.desc ? it.desc : a.tagline)}</div><div class="p-qrs">${qrs}</div></div></div>`;
+    }).join("");
+    main = `<div class="p-grid" style="grid-template-columns:repeat(${c},1fr);grid-template-rows:repeat(${r},1fr)">${cards}</div>`;
+  } else if(p.kind==="cover"){
+    const wall = D.apps.filter(a=>a.icon).slice(0,32).map(a=>`<img src="${a.icon}">`).join("");
+    main = `<div style="display:flex;flex-direction:column;justify-content:space-between;flex:1;min-height:0">
+      <div><div style="font-size:24pt;line-height:1.2;font-weight:800">${esc(p.claim ?? (D.apps.length+" aplikací pro děti, hráče, tvůrce i firmy."))}</div>
+      <div style="font-size:14pt;line-height:1.35;color:${T.muted};margin-top:3mm">${esc(p.text)}</div></div>
+      ${p.wall===false?"<div></div>":`<div class="p-wall">${wall}</div>`}
+      <div style="display:flex;align-items:center;gap:8mm;justify-content:center"><div class="p-q" style="font-size:11pt"><img src="${qrUri(S.footQrUrl||webUrl())}" style="width:42mm;height:42mm"></div>
+      <div style="font-size:18pt;font-weight:800;line-height:1.2">${esc(p.scanLabel ?? "Naskenuj")}<br><span style="color:${col}">${esc(p.scanUrl ?? "olin.now")}</span></div></div></div>`;
+  } else {
+    const paras = String(p.text||"").split(/\n\s*\n/).map(t=>`<p style="font-size:20pt;line-height:1.35;font-weight:700;margin-bottom:7mm">${esc(t).replace(/\n/g,"<br>")}</p>`).join("");
+    main = `<div style="justify-content:center;display:flex;flex-direction:column;flex:1">${paras}</div>`;
+  }
+  const fqOn = p.footQr==="off" ? false : p.footQr==="on" ? true : S.footQr;
+  const fqu = p.footQrUrl || S.footQrUrl, fu = p.footUrl || S.footUrl;
+  const fq = fqOn ? `<div class="fq"><img src="${qrUri(fqu||webUrl())}">${esc(fu||"")}</div>` : "";
+  const foot = p.noFoot ? `<div class="p-foot" style="border-top-color:transparent"></div>` : `<div class="p-foot"><div class="tx"><strong>${esc(p.footTitle ?? S.footTitle)}</strong><p>${esc(p.footText ?? S.footText)}</p><div class="u">${esc(fu)}</div></div>${fq}</div>`;
+  return {style, html: head + `<div class="p-main">${main}</div>` + foot};
+}
+function paintPoster(el, ex, preview){ const r = posterHTML(ex, preview); el.setAttribute("style", r.style); el.innerHTML = r.html; }
+
+/* ---------- náhled ---------- */
+function fitStage(){
+  const st = document.getElementById("stage"), fit = document.getElementById("fit"), po = document.getElementById("poster");
+  const W = 793.7, Hh = 1122.5, avail = st.clientWidth - 28;
+  const sc = Math.max(.2, Math.min(1.1, avail / W));
+  po.style.transform = `scale(${sc})`; fit.style.width = (W*sc)+"px"; fit.style.height = (Hh*sc)+"px";
+}
+function renderPreview(){
+  const ex = expand(); if(cur >= ex.length) cur = ex.length-1; if(cur < 0) cur = 0;
+  if(!ex.length){ document.getElementById("poster").innerHTML=""; return; }
+  paintPoster(document.getElementById("poster"), ex[cur], true);
+  fitStage(); renderNav(ex);
+}
+function renderNav(ex){
+  document.getElementById("nav").innerHTML =
+    `<button data-a="prev" ${cur<=0?"disabled":""}>◀</button><b>List ${cur+1} / ${ex.length}</b><button data-a="next" ${cur>=ex.length-1?"disabled":""}>▶</button>`;
+}
+
+/* ---------- editor ---------- */
+const KIND = {apps:"Appky",cover:"Obálka",text:"Text"};
+function renderEditor(){
+  const ex = expand(), e = ex[cur], pi = e ? e.src : 0, p = S.pages[pi];
+  let h = `<div class="panel"><h2>Listy</h2><div class="pages">` + S.pages.map((q,i)=>
+    `<div class="pg ${i===pi?"on":""}"><span class="t" data-a="sel" data-i="${i}">${esc(q.title||"(bez názvu)")}</span><span class="k">${KIND[q.kind]}</span>
+     <button class="sm" data-a="up" data-i="${i}" title="Nahoru">↑</button><button class="sm" data-a="down" data-i="${i}" title="Dolů">↓</button>
+     <button class="sm" data-a="dup" data-i="${i}" title="Duplikovat">⧉</button><button class="sm" data-a="del" data-i="${i}" title="Smazat">✕</button></div>`).join("") +
+    `</div><div class="row"><button data-a="addapps">+ List s appkami</button><button data-a="addtext">+ Textový list</button></div></div>`;
+  if(p){
+    h += `<div class="panel"><h2>Obsah listu</h2>
+      <label>Nadpis<input type="text" id="f-title" value="${esc(p.title)}"></label>
+      <label>Podtitul<input type="text" id="f-sub" value="${esc(p.sub)}"></label>
+      <div class="row"><label>Typ listu<select id="f-kind">${Object.entries(KIND).map(([k,v])=>`<option value="${k}" ${p.kind===k?"selected":""}>${v}</option>`).join("")}</select></label>
+      <label>Barva (štítek a linka)<input type="color" id="f-color" value="${p.color||theme().accent}"></label></div>
+      <label>QR TikTok a YouTube v hlavičce<select id="f-soc"><option value="" ${!p.soc?"selected":""}>podle společného nastavení</option><option value="on" ${p.soc==="on"?"selected":""}>zobrazit</option><option value="off" ${p.soc==="off"?"selected":""}>skrýt</option></select></label>
+      <label>Štítek vpravo v hlavičce<select id="f-tag">${[["","Podle listu (čtverec jen u kategorií)"],["square","Barevný čtverec"],["icon","Ikona první appky"],["none","Nic"]].map(([v,t])=>`<option value="${v}" ${(p.tag||"")===v?"selected":""}>${t}</option>`).join("")}</select></label>`;
+    if(p.kind==="apps"){
+      h += `<label>Rozložení<select id="f-layout">${[[2,"2 velké (1×2)"],[4,"4 na list (2×2)"],[6,"6 na list (2×3)"]].map(([v,t])=>`<option value="${v}" ${(p.layout||4)==v?"selected":""}>${t}</option>`).join("")}</select></label>
+        <p class="hint">Víc appek než se vejde se rozdělí na další listy automaticky.</p><div class="apps">` +
+        p.apps.map((it,i)=>{ const a = APPS[it.slug]; if(!a) return ""; return `<div class="ap">${a.icon?`<img src="${a.icon}" alt="">`:"<span></span>"}<span class="n">${esc(a.name)}</span>
+          <span><button class="sm" data-a="aup" data-i="${i}">↑</button> <button class="sm" data-a="adown" data-i="${i}">↓</button> <button class="sm" data-a="adel" data-i="${i}">✕</button></span>
+          <details class="sel" style="grid-column:2/4;display:block"><summary class="hint" style="cursor:pointer">Upravit název a popis${it.name||it.desc?" ●":""}</summary>
+          <label>Název<input type="text" data-a="aname" data-i="${i}" value="${esc(it.name||"")}" placeholder="${esc(a.name)}"></label>
+          <label>Popis<textarea data-a="adesc" data-i="${i}" rows="2" placeholder="${esc(a.tagline)}">${esc(it.desc||"")}</textarea></label></details>
+          <div class="strip" role="group" aria-label="Screenshot">${a.shots.map((u,k)=>`<button type="button" class="${it.shot===k?"on":""}" data-a="pick" data-i="${i}" data-k="${k}" title="Screenshot ${k+1}"><img src="${u}" alt="Screenshot ${k+1}"><b>${k+1}</b></button>`).join("")}<button type="button" class="none ${it.shot<0?"on":""}" data-a="pick" data-i="${i}" data-k="-1">Bez screenshotu</button></div>
+          <span class="sel"><select data-a="qr" data-i="${i}" aria-label="QR"><option value="auto" ${it.qr==="auto"?"selected":""}>QR: ${a.ios&&a.android?"obchody":"stránka"}</option><option value="page" ${it.qr==="page"?"selected":""}>QR: stránka olin.now</option><option value="none" ${it.qr==="none"?"selected":""}>Bez QR</option></select></span></div>`; }).join("") +
+        `</div><div class="row"><select id="add-app"><option value="">Přidat appku…</option>${Object.entries(D.cats).map(([c,n])=>`<optgroup label="${esc(n)}">${D.apps.filter(a=>a.cat===c).map(a=>`<option value="${a.slug}">${esc(a.name)}${a.ios&&a.android?" ★":""}</option>`).join("")}</optgroup>`).join("")}</select>
+        <select id="add-cat"><option value="">Přidat celou kategorii…</option>${Object.entries(D.cats).map(([c,n])=>`<option value="${c}">${esc(n)}</option>`).join("")}<option value="_store">Appky v obchodech ★</option></select></div>`;
+    } else {
+      if(p.kind==="cover") h += `<label>Hlavní věta<input type="text" id="f-claim" value="${esc(p.claim ?? (D.apps.length+" aplikací pro děti, hráče, tvůrce i firmy."))}"></label>
+        <label>Popis pod ní<textarea id="f-text" rows="3">${esc(p.text)}</textarea></label>
+        <div class="row"><label>Popisek u QR<input type="text" id="f-scanl" value="${esc(p.scanLabel ?? "Naskenuj")}"></label><label>Adresa u QR<input type="text" id="f-scanu" value="${esc(p.scanUrl ?? "olin.now")}"></label></div>
+        <label class="chk"><input type="checkbox" id="f-wall" ${p.wall===false?"":"checked"}> Zeď ikon appek</label>`;
+      else h += `<label>Text (odstavce odděl prázdným řádkem)<textarea id="f-text" rows="7">${esc(p.text)}</textarea></label>`;
+    }
+    h += `</div>`;
+  }
+  if(p) h += `<div class="panel"><h2>Patička tohoto listu</h2>
+    <label class="chk"><input type="checkbox" id="p-nofoot" ${p.noFoot?"checked":""}> Skrýt patičku</label>
+    <label>Hlavní věta (prázdné = společná)<input type="text" id="p-ft" value="${esc(p.footTitle||"")}" placeholder="${esc(S.footTitle)}"></label>
+    <label>Text (prázdné = společný)<textarea id="p-fx" rows="2" placeholder="${esc(S.footText)}">${esc(p.footText||"")}</textarea></label>
+    <div class="row"><label>Adresa<input type="text" id="p-fu" value="${esc(p.footUrl||"")}" placeholder="${esc(S.footUrl)}"></label>
+    <label>QR<select id="p-fq"><option value="" ${!p.footQr?"selected":""}>podle společného</option><option value="on" ${p.footQr==="on"?"selected":""}>zobrazit</option><option value="off" ${p.footQr==="off"?"selected":""}>skrýt</option></select></label></div>
+    <label>Odkaz QR (prázdné = společný)<input type="url" id="p-fqu" value="${esc(p.footQrUrl||"")}"></label></div>`;
+  h += `<div class="panel"><h2>Vzhled a společná patička</h2>
+    <div class="row"><label>Styl<select id="g-theme">${Object.entries(THEMES).map(([k,t])=>`<option value="${k}" ${S.theme===k?"selected":""}>${t.name}</option>`).join("")}</select></label>
+    <label>Vlastní akcent<input type="color" id="g-accent" value="${S.accent||theme().accent}"></label></div>
+    <label>TikTok (odkaz na kanál)<input type="url" id="g-tt" value="${esc(S.tiktok ?? DEF_TT)}" placeholder="https://www.tiktok.com/@…"></label>
+    <label>YouTube Shorts (odkaz na kanál)<input type="url" id="g-yt" value="${esc(S.youtube ?? DEF_YT)}" placeholder="https://www.youtube.com/@…/shorts"></label>
+    <label class="chk"><input type="checkbox" id="g-soc" ${S.soc!==false?"checked":""}> QR sítí v hlavičce všech listů</label>
+    <label class="chk"><input type="checkbox" id="g-logo" ${S.logo?"checked":""}> Logo v hlavičce</label>
+    <label>Hlavní věta patičky<input type="text" id="g-ft" value="${esc(S.footTitle)}"></label>
+    <label>Text patičky<textarea id="g-fx" rows="3">${esc(S.footText)}</textarea></label>
+    <div class="row"><label>Adresa v patičce<input type="text" id="g-fu" value="${esc(S.footUrl)}"></label><label>Místo (sleduje QR)<input type="text" id="g-place" value="${esc(S.place)}"></label></div>
+    <label class="chk"><input type="checkbox" id="g-fq" ${S.footQr?"checked":""}> QR v patičce</label>
+    <label>Odkaz QR v patičce (prázdné = olin.now?src=místo)<input type="url" id="g-fqu" value="${esc(S.footQrUrl)}" placeholder="https://olin.now/"></label></div>`;
+  document.getElementById("editor").innerHTML = h;
+}
+
+/* ---------- export ---------- */
+let pdfBlob = null, busy = false;
+function renderExport(msg){
+  const ex = expand(), canSave = !!window.__dl;
+  document.getElementById("export").innerHTML = `<h2>Export</h2>
+    <div class="bar"><button class="pri" data-a="pdf" ${busy?"disabled":""}>Vytvořit PDF (${ex.length} ${ex.length===1?"list":ex.length<5?"listy":"listů"})</button>
+    <button data-a="pdf1" ${busy?"disabled":""}>Jen tento list</button>
+    ${pdfBlob?`<button class="pri" data-a="save">Uložit ${esc(pdfBlob.name)} (${(pdfBlob.blob.size/1048576).toFixed(1)} MB)</button>`:""}</div>
+    <div class="msg" id="exmsg">${msg || "A4 na výšku, 300 dpi, barevně. Tisk na matný papír 160–200 g, matná laminace 125 µm. Okraj 10 mm počítá s laminací."}</div>
+    ${window.__dlChecked && !canSave ? `<div class="msg err">Ukládání souborů tu není dostupné. Otevři artefakt přímo v claude.ai.</div>`:""}`;
+}
+function setMsg(t,cls){ const m = document.getElementById("exmsg"); if(m){ m.className = "msg "+(cls||""); m.innerHTML = t; } }
+async function makePdf(list, name){
+  if(busy) return; busy = true; pdfBlob = null; renderExport("Připravuji…");
+  const off = document.getElementById("offscreen");
+  try{
+    const { jsPDF } = window.jspdf, pdf = new jsPDF({unit:"mm",format:"a4",orientation:"portrait",compress:true});
+    for(let i=0;i<list.length;i++){
+      setMsg(`Renderuji list <b>${i+1}</b> z ${list.length}…`);
+      await new Promise(r => setTimeout(r, 30));
+      const el = document.createElement("div"); el.className = "poster"; paintPoster(el, list[i]);
+      off.innerHTML = ""; off.appendChild(el);
+      await Promise.all([...el.querySelectorAll("img")].map(im => im.decode ? im.decode().catch(()=>{}) : null));
+      const cv = await html2canvas(el, {scale:2480/793.7, backgroundColor:theme().bg, logging:false});
+      if(i) pdf.addPage("a4","portrait");
+      pdf.addImage(cv.toDataURL("image/jpeg",0.92),"JPEG",0,0,210,297,undefined,"FAST");
+    }
+    off.innerHTML = "";
+    pdfBlob = {name, blob: pdf.output("blob")};
+    busy = false; renderExport(`<b class="ok">Hotovo.</b> Klikni na Uložit.`);
+  }catch(e){ busy = false; off.innerHTML=""; renderExport(`<span class="err">Export selhal: ${esc(e && e.message || e)}</span>`); }
+}
+async function savePdf(){
+  try{
+    const d = window.claude&&claude.use ? await claude.use("downloads") : null;
+    if(!d){ setMsg("Ukládání souborů tu není dostupné. Otevři artefakt přímo v claude.ai.","err"); return; }
+    await d.save({filename: pdfBlob.name, data: pdfBlob.blob});
+    setMsg("Uloženo.","ok");
+  }catch(e){ setMsg(e && e.code==="declined" ? "Uložení zrušeno." : "Nepovedlo se uložit ("+esc(e && (e.code||e.message))+").","err"); }
+}
+
+/* ---------- události ---------- */
+const $ = id => document.getElementById(id);
+function commitText(){ save(); renderPreview(); }
+function structure(){ save(); renderEditor(); renderPreview(); renderExport(); }
+function curSrc(){ const ex = expand(); return ex[cur] ? S.pages[ex[cur].src] : null; }
+function move(arr,i,d){ const j=i+d; if(j<0||j>=arr.length) return; [arr[i],arr[j]]=[arr[j],arr[i]]; }
+document.addEventListener("input", ev => {
+  const t = ev.target, p = curSrc();
+  if(t.id==="f-title"){ p.title=t.value; commitText(); renderEditorTitles(); }
+  else if(t.id==="f-sub"){ p.sub=t.value; commitText(); }
+  else if(t.id==="f-text"){ p.text=t.value; commitText(); }
+  else if(t.id==="f-color"){ p.color=t.value; commitText(); }
+  else if(t.id==="f-claim"){ p.claim=t.value; commitText(); }
+  else if(t.id==="f-scanl"){ p.scanLabel=t.value; commitText(); }
+  else if(t.id==="f-scanu"){ p.scanUrl=t.value; commitText(); }
+  else if(t.id==="p-ft"){ p.footTitle=t.value===""?undefined:t.value; commitText(); }
+  else if(t.id==="p-fx"){ p.footText=t.value===""?undefined:t.value; commitText(); }
+  else if(t.id==="p-fu"){ p.footUrl=t.value; commitText(); }
+  else if(t.id==="p-fqu"){ p.footQrUrl=t.value.trim(); commitText(); }
+  else if(t.dataset.a==="aname"){ p.apps[+t.dataset.i].name=t.value; commitText(); }
+  else if(t.dataset.a==="adesc"){ p.apps[+t.dataset.i].desc=t.value; commitText(); }
+  else if(t.id==="g-tt"){ S.tiktok=t.value.trim(); commitText(); }
+  else if(t.id==="g-yt"){ S.youtube=t.value.trim(); commitText(); }
+  else if(t.id==="g-ft"){ S.footTitle=t.value; commitText(); }
+  else if(t.id==="g-fx"){ S.footText=t.value; commitText(); }
+  else if(t.id==="g-fu"){ S.footUrl=t.value; commitText(); }
+  else if(t.id==="g-place"){ S.place=t.value.trim()||"cafe"; commitText(); }
+  else if(t.id==="g-fqu"){ S.footQrUrl=t.value.trim(); commitText(); }
+  else if(t.id==="g-accent"){ S.accent=t.value; commitText(); }
+});
+function renderEditorTitles(){ document.querySelectorAll(".pg .t").forEach((el,i)=>{ el.textContent = S.pages[i].title || "(bez názvu)"; }); }
+document.addEventListener("change", ev => {
+  const t = ev.target, p = curSrc(), i = +t.dataset.i;
+  if(t.id==="preset" && t.value){ S = preset(t.value); cur = 0; t.value=""; structure(); }
+  else if(t.id==="f-kind"){ p.kind=t.value; if(p.kind==="apps"){ p.apps = p.apps||[]; p.layout = p.layout||4; } structure(); }
+  else if(t.id==="f-tag"){ p.tag=t.value||undefined; commitText(); }
+  else if(t.id==="f-layout"){ p.layout=+t.value; structure(); }
+  else if(t.id==="g-theme"){ S.theme=t.value; S.accent=""; structure(); }
+  else if(t.id==="f-wall"){ p.wall=t.checked; commitText(); }
+  else if(t.id==="p-nofoot"){ p.noFoot=t.checked; commitText(); }
+  else if(t.id==="p-fq"){ p.footQr=t.value; commitText(); }
+  else if(t.id==="f-soc"){ p.soc=t.value||undefined; commitText(); }
+  else if(t.id==="g-soc"){ S.soc=t.checked; commitText(); }
+  else if(t.id==="g-logo"){ S.logo=t.checked; commitText(); }
+  else if(t.id==="g-fq"){ S.footQr=t.checked; commitText(); }
+  else if(t.id==="add-app" && t.value){ p.apps.push(ap(t.value)); structure(); }
+  else if(t.id==="add-cat" && t.value){
+    const slugs = t.value==="_store" ? STORE : D.apps.filter(a=>a.cat===t.value).map(a=>a.slug);
+    slugs.forEach(s => { if(!p.apps.some(x=>x.slug===s)) p.apps.push(ap(s)); }); structure(); }
+  else if(t.dataset.a==="shot"){ p.apps[i].shot=+t.value; commitText(); }
+  else if(t.dataset.a==="qr"){ p.apps[i].qr=t.value; commitText(); }
+});
+document.addEventListener("click", ev => {
+  const b = ev.target.closest("[data-a]"); if(!b || b.tagName==="SELECT") return;
+  const a = b.dataset.a, i = +b.dataset.i, p = curSrc(), ex = expand();
+  if(a==="prev"){ cur--; structure(); }
+  else if(a==="next"){ cur++; structure(); }
+  else if(a==="sel"){ cur = ex.findIndex(e=>e.src===i); structure(); }
+  else if(a==="up"||a==="down"){ move(S.pages,i,a==="up"?-1:1); cur = expand().findIndex(e=>e.src===i+(a==="up"?-1:1)); structure(); }
+  else if(a==="dup"){ const c = JSON.parse(JSON.stringify(S.pages[i])); c.id=uid(); c.title+=" (kopie)"; S.pages.splice(i+1,0,c); cur = expand().findIndex(e=>e.src===i+1); structure(); }
+  else if(a==="del"){ if(S.pages.length>1){ S.pages.splice(i,1); cur = Math.min(cur, expand().length-1); structure(); } }
+  else if(a==="addapps"){ S.pages.push({id:uid(),kind:"apps",title:"Nový list",sub:"",color:"",layout:4,apps:[]}); cur = expand().length-1; structure(); }
+  else if(a==="addtext"){ S.pages.push({id:uid(),kind:"text",title:"Nový text",sub:"",color:"",text:"Tvůj text.",}); cur = expand().length-1; structure(); }
+  else if(a==="pick"){ p.apps[i].shot=+b.dataset.k; save(); renderEditor(); renderPreview(); }
+  else if(a==="aup"||a==="adown"){ move(p.apps,i,a==="aup"?-1:1); structure(); }
+  else if(a==="adel"){ p.apps.splice(i,1); structure(); }
+  else if(a==="pdf"){ makePdf(ex, "plakaty-ananas-bananas.pdf"); }
+  else if(a==="pdf1"){ makePdf([ex[cur]], `plakat-${cur+1}.pdf`); }
+  else if(a==="save"){ savePdf(); }
+});
+window.addEventListener("resize", fitStage);
+if(window.ResizeObserver) new ResizeObserver(fitStage).observe(document.getElementById("stage"));
+(window.claude&&claude.use?claude.use("downloads"):Promise.resolve(null)).then(d => { window.__dl = !!d; window.__dlChecked = true; renderExport(); }).catch(()=>{ window.__dlChecked = true; renderExport(); });
+structure();
+</script>

@@ -1,0 +1,54 @@
+<!doctype html><html lang="cs" data-theme="{{ theme_name }}"><head><meta charset="utf-8"><style>
+{{ theme }}
+@page{size:A4;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:210mm;height:297mm;background:var(--bg);color:var(--ink);font-family:var(--font)}
+.page{width:210mm;height:297mm;padding:10mm;display:flex;flex-direction:column;overflow:hidden;--cat:var(--cat-{{ cat }})}
+header{height:28mm;display:flex;align-items:center;gap:6mm;border-bottom:1.4mm solid var(--cat);flex:none}
+header img.logo{height:20mm;width:auto;border-radius:3mm}
+header h1{font-size:26pt;flex:1;line-height:1.05}
+header .sub{font-size:11pt;color:var(--muted);font-weight:400;display:block;margin-top:1mm}
+.tag{width:14mm;height:14mm;border-radius:3mm;background:var(--cat)}
+main{flex:1;min-height:0;padding:6mm 0;display:flex;flex-direction:column}
+.grid{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:5mm;flex:1;min-height:0}
+.card{background:var(--card);border:.4mm solid var(--line);border-radius:var(--radius);padding:3.5mm;display:flex;gap:3.5mm;overflow:hidden;min-height:0}
+.phone{flex:none;height:100%;aspect-ratio:9/19.5;border:1mm solid var(--ink);border-radius:4.5mm;overflow:hidden;background:#dde;position:relative;display:flex;align-items:center;justify-content:center}
+.phone img{width:100%;height:100%;object-fit:cover;object-position:top}
+.phone .soon{font-size:10pt;font-weight:800;color:#445;text-align:center;padding:2mm}
+.info{display:flex;flex-direction:column;gap:1.5mm;min-width:0;flex:1}
+.info .ic{display:flex;align-items:center;gap:2.5mm}
+.info .ic img{width:{{ icon }}mm;height:{{ icon }}mm;border-radius:22%;flex:none}
+.info h2{font-size:{{ h2 }}pt;line-height:1.1}
+.info p{font-size:{{ ptxt }}pt;line-height:1.3;color:var(--muted);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.qrs{margin-top:auto;display:flex;gap:2mm;align-items:flex-end}
+.q{text-align:center;font-size:7pt;font-weight:700;color:var(--ink)}
+.q img{display:block;width:{{ qr }}mm;height:{{ qr }}mm;background:#fff}
+footer{height:40mm;border-top:.4mm solid var(--line);padding-top:4mm;display:flex;align-items:center;gap:6mm;flex:none}
+footer .txt{flex:1}
+footer strong{font-size:15pt;display:block;margin-bottom:1.5mm}
+footer p{font-size:9.5pt;line-height:1.35;color:var(--muted)}
+footer .url{font-size:12pt;font-weight:800;margin-top:2mm}
+.fq{text-align:center;font-size:8pt;color:var(--muted)}
+.fq img{display:block;width:32mm;height:32mm;background:#fff}
+.big{display:flex;gap:10mm;justify-content:center;margin-top:8mm}
+.big .fq img{width:62mm;height:62mm}
+.big .fq{font-size:13pt;font-weight:700;color:var(--ink)}
+</style></head><body><section class="page">
+<header><img class="logo" src="{{ logo }}"><h1>{{ title }}<span class="sub">{{ sub }}</span></h1><div class="tag"></div></header>
+<main {% if kind!='apps' %}style="justify-content:center;gap:7mm"{% endif %}>
+{% if kind=='apps' %}<div class="grid">
+{% for a in apps %}<div class="card">
+ <div class="phone">{% if a.shot %}<img src="{{ a.shot }}">{% else %}<div class="soon">{{ a.name }}<br>screenshot</div>{% endif %}</div>
+ <div class="info"><div class="ic">{% if a.icon %}<img src="{{ a.icon }}">{% endif %}<h2>{{ a.name }}</h2></div><p>{{ a.tagline }}</p>
+ <div class="qrs">{% for q in a.qrs %}<div class="q"><img src="{{ q.uri }}">{{ q.label }}</div>{% endfor %}</div></div>
+</div>{% endfor %}</div>
+{% else %}
+ {% if kind=='cover' %}<p style="font-size:24pt;line-height:1.25;font-weight:800">40+ aplikací pro děti, hráče, tvůrce i firmy.</p>{% endif %}
+ <p style="font-size:{{ '16' if kind=='cover' else '22' }}pt;line-height:1.4;color:var(--muted)">{{ text }}</p>
+ <div class="big">{% for q in fqrs %}<div class="fq"><img src="{{ q.uri }}">{{ q.label }}</div>{% endfor %}</div>
+{% endif %}
+</main>
+<footer><div class="txt"><strong>Zdarma. Bez reklam. Bez sledování.</strong>
+<p>Appky dělá jeden člověk v Praze s pomocí AI. Platíš jen za rozšíření, které chceš — a vždy víš dopředu za co.</p><div class="url">olin.now</div></div>
+{% if kind=='apps' %}<div class="fq"><img src="{{ webqr }}">olin.now</div>{% endif %}</footer>
+</section></body></html>

@@ -159,6 +159,7 @@ const theme = () => { const t = THEMES[S.theme] || THEMES.tropical; return S.acc
 const LAYOUT = {2:{c:1,r:2},4:{c:2,r:2},6:{c:2,r:3}};
 function webUrl(path){ const u = "https://olin.now/" + (path||""); return u + (u.includes("?")?"&":"?") + "src=" + encodeURIComponent(S.place||"cafe"); }
 function playUrl(u){ return u + (u.includes("?")?"&":"?") + "referrer=" + encodeURIComponent("utm_source="+(S.place||"cafe")+"&utm_medium=poster"); }
+function iosUrl(u){ return u.split("?")[0] + "?pt=" + D.pt + "&ct=" + encodeURIComponent(S.place||"cafe") + "&mt=8"; }
 const qrCache = new Map();
 function qrUri(text){
   if(qrCache.has(text)) return qrCache.get(text);
@@ -167,7 +168,8 @@ function qrUri(text){
 }
 function appQrs(item){
   const a = APPS[item.slug]; if(!a || item.qr==="none") return [];
-  if(item.qr==="auto" && a.ios && a.android) return [{u:qrUri(a.ios),l:"App Store"},{u:qrUri(playUrl(a.android)),l:"Google Play"}];
+  if(item.qr==="auto" && (a.ios || a.android)){
+    const q = []; if(a.ios) q.push({u:qrUri(iosUrl(a.ios)),l:"App Store"}); if(a.android) q.push({u:qrUri(playUrl(a.android)),l:"Google Play"}); return q; }
   return [{u:qrUri(webUrl(a.slug+".html")),l:"olin.now"}];
 }
 function expand(){
@@ -219,8 +221,11 @@ function posterHTML(ex, preview){
       <div><div style="font-size:24pt;line-height:1.2;font-weight:800">${esc(p.claim ?? (D.apps.length+" aplikací pro děti, hráče, tvůrce i firmy."))}</div>
       <div style="font-size:14pt;line-height:1.35;color:${T.muted};margin-top:3mm">${esc(p.text)}</div></div>
       ${p.wall===false?"<div></div>":`<div class="p-wall">${wall}</div>`}
-      <div style="display:flex;align-items:center;gap:8mm;justify-content:center"><div class="p-q" style="font-size:11pt"><img src="${qrUri(S.footQrUrl||webUrl())}" style="width:42mm;height:42mm"></div>
-      <div style="font-size:18pt;font-weight:800;line-height:1.2">${esc(p.scanLabel ?? "Naskenuj")}<br><span style="color:${col}">${esc(p.scanUrl ?? "olin.now")}</span></div></div></div>`;
+      ${(p.coverQr||"all")==="all" ? `<div style="display:flex;align-items:flex-end;gap:7mm;justify-content:center">
+        <div style="font-size:16pt;font-weight:800;line-height:1.2;align-self:center;color:${col}">${esc(p.scanLabel ?? "Naskenuj")}</div>
+        ${[[iosUrl(D.devIos),"App Store"],[playUrl(D.devPlay),"Google Play"],[S.footQrUrl||webUrl(),esc(p.scanUrl ?? "olin.now")]].map(([u,l])=>`<div class="p-q" style="font-size:11pt"><img src="${qrUri(u)}" style="width:36mm;height:36mm;margin-bottom:1.5mm">${l}</div>`).join("")}</div>`
+      : `<div style="display:flex;align-items:center;gap:8mm;justify-content:center"><div class="p-q" style="font-size:11pt"><img src="${qrUri(S.footQrUrl||webUrl())}" style="width:42mm;height:42mm"></div>
+      <div style="font-size:18pt;font-weight:800;line-height:1.2">${esc(p.scanLabel ?? "Naskenuj")}<br><span style="color:${col}">${esc(p.scanUrl ?? "olin.now")}</span></div></div>`}</div>`;
   } else {
     const paras = String(p.text||"").split(/\n\s*\n/).map(t=>`<p style="font-size:20pt;line-height:1.35;font-weight:700;margin-bottom:7mm">${esc(t).replace(/\n/g,"<br>")}</p>`).join("");
     main = `<div style="justify-content:center;display:flex;flex-direction:column;flex:1">${paras}</div>`;
@@ -277,13 +282,14 @@ function renderEditor(){
           <label>Název<input type="text" data-a="aname" data-i="${i}" value="${esc(it.name||"")}" placeholder="${esc(a.name)}"></label>
           <label>Popis<textarea data-a="adesc" data-i="${i}" rows="2" placeholder="${esc(a.tagline)}">${esc(it.desc||"")}</textarea></label></details>
           <div class="strip" role="group" aria-label="Screenshot">${a.shots.map((u,k)=>`<button type="button" class="${it.shot===k?"on":""}" data-a="pick" data-i="${i}" data-k="${k}" title="Screenshot ${k+1}"><img src="${u}" alt="Screenshot ${k+1}"><b>${k+1}</b></button>`).join("")}<button type="button" class="none ${it.shot<0?"on":""}" data-a="pick" data-i="${i}" data-k="-1">Bez screenshotu</button></div>
-          <span class="sel"><select data-a="qr" data-i="${i}" aria-label="QR"><option value="auto" ${it.qr==="auto"?"selected":""}>QR: ${a.ios&&a.android?"obchody":"stránka"}</option><option value="page" ${it.qr==="page"?"selected":""}>QR: stránka olin.now</option><option value="none" ${it.qr==="none"?"selected":""}>Bez QR</option></select></span></div>`; }).join("") +
-        `</div><div class="row"><select id="add-app"><option value="">Přidat appku…</option>${Object.entries(D.cats).map(([c,n])=>`<optgroup label="${esc(n)}">${D.apps.filter(a=>a.cat===c).map(a=>`<option value="${a.slug}">${esc(a.name)}${a.ios&&a.android?" ★":""}</option>`).join("")}</optgroup>`).join("")}</select>
+          <span class="sel"><select data-a="qr" data-i="${i}" aria-label="QR"><option value="auto" ${it.qr==="auto"?"selected":""}>QR: ${a.ios&&a.android?"obchody":a.ios?"App Store":a.android?"Google Play":"stránka"}</option><option value="page" ${it.qr==="page"?"selected":""}>QR: stránka olin.now</option><option value="none" ${it.qr==="none"?"selected":""}>Bez QR</option></select></span></div>`; }).join("") +
+        `</div><div class="row"><select id="add-app"><option value="">Přidat appku…</option>${Object.entries(D.cats).map(([c,n])=>`<optgroup label="${esc(n)}">${D.apps.filter(a=>a.cat===c).map(a=>`<option value="${a.slug}">${esc(a.name)}${a.ios||a.android?" ★":""}</option>`).join("")}</optgroup>`).join("")}</select>
         <select id="add-cat"><option value="">Přidat celou kategorii…</option>${Object.entries(D.cats).map(([c,n])=>`<option value="${c}">${esc(n)}</option>`).join("")}<option value="_store">Appky v obchodech ★</option></select></div>`;
     } else {
       if(p.kind==="cover") h += `<label>Hlavní věta<input type="text" id="f-claim" value="${esc(p.claim ?? (D.apps.length+" aplikací pro děti, hráče, tvůrce i firmy."))}"></label>
         <label>Popis pod ní<textarea id="f-text" rows="3">${esc(p.text)}</textarea></label>
         <div class="row"><label>Popisek u QR<input type="text" id="f-scanl" value="${esc(p.scanLabel ?? "Naskenuj")}"></label><label>Adresa u QR<input type="text" id="f-scanu" value="${esc(p.scanUrl ?? "olin.now")}"></label></div>
+        <label>QR na obálce<select id="f-cqr"><option value="all" ${(p.coverQr||"all")==="all"?"selected":""}>App Store + Google Play + olin.now</option><option value="web" ${p.coverQr==="web"?"selected":""}>Jen olin.now (velký)</option></select></label>
         <label class="chk"><input type="checkbox" id="f-wall" ${p.wall===false?"":"checked"}> Zeď ikon appek</label>`;
       else h += `<label>Text (odstavce odděl prázdným řádkem)<textarea id="f-text" rows="7">${esc(p.text)}</textarea></label>`;
     }
@@ -390,6 +396,7 @@ document.addEventListener("change", ev => {
   else if(t.id==="f-tag"){ p.tag=t.value||undefined; commitText(); }
   else if(t.id==="f-layout"){ p.layout=+t.value; structure(); }
   else if(t.id==="g-theme"){ S.theme=t.value; S.accent=""; structure(); }
+  else if(t.id==="f-cqr"){ p.coverQr=t.value; commitText(); }
   else if(t.id==="f-wall"){ p.wall=t.checked; commitText(); }
   else if(t.id==="p-nofoot"){ p.noFoot=t.checked; commitText(); }
   else if(t.id==="p-fq"){ p.footQr=t.value; commitText(); }
